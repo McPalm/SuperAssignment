@@ -1,0 +1,19 @@
+@using Microsoft.AspNetCore.Identity
+@model List<IdentityRole>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<form asp-action="Create" method="post">
+    <label>New Role: </label>
+    <input type="text" name="name" required min="1"/>
+    <input type="submit" value="create"/>
+</form>
+<ul>
+    @foreach (var role in Model)
+    {
+        <li>@role.Name</li>
+    }
+</ul>
