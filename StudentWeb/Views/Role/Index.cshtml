@@ -11,9 +11,19 @@
     <input type="text" name="name" required min="1"/>
     <input type="submit" value="create"/>
 </form>
-<ul>
+<table class="table">
     @foreach (var role in Model)
     {
-        <li>@role.Name</li>
+        <tr>
+            <td>
+                @role.Name
+            </td>
+            <td>
+                <div class="float-right">
+                   <a class="btn btn-outline-info" asp-controller="Role" asp-action="Details" asp-route-name="@role.Name">Details</a>
+                   <a class="btn btn-info" asp-controller="Role" asp-action="Edit" asp-route-name="@role.Name">Edit</a>
+                </div>
+            </td>
+        </tr>
     }
-</ul>
+</table>

@@ -1,0 +1,18 @@
+@using Microsoft.AspNetCore.Identity
+@model IdentityRole
+@{
+    ViewData["Title"] = Model != null ? Model.Name : "Missing :(";
+}
+
+@if(Model != null)
+{
+    <h1>@Model.Name</h1>
+    <form asp-controller="Role" asp-action="Delete" asp-route-name="@Model.Name" style="display:inline">
+        <button type="submit" class="btn btn-danger" >Delete</button>
+    </form>
+    <a class="btn btn-info">Edit</a>
+} else
+{
+    <h1>I could not find that! :(</h1>
+}
+<a asp-action="Index">go beck...</a>

@@ -40,6 +40,25 @@ namespace StudentWeb.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Details(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return View(null);
+            var role = await _roleManager.FindByNameAsync(name);
+            return View(role);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(string name)
+        {
+            var result = await _roleManager.FindByNameAsync(name);
+            if (result != null)
+                await _roleManager.DeleteAsync(result);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
         public IActionResult AssignRole() => View();
         [HttpPost]
         [ValidateAntiForgeryToken]
