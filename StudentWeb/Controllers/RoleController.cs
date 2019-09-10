@@ -77,5 +77,24 @@ namespace StudentWeb.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(string name)
+        {
+            var role = await _roleManager.FindByNameAsync(name);
+            return View(role);
+        }
+
+        [HttpPost]
+        
+        public async Task<IActionResult> Edit(IdentityRole role)
+        {
+            if(ModelState.IsValid)
+            {
+                await _roleManager.UpdateAsync(role);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }
